@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Loren Kociko">
+    <meta name="description" content="TUT PPA115D Principles of progamming A">
+    <meta name="keywords" content="PPA115D, EXAM, MOCK, questions, practice, answers, 200-301">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TUT PPA115D Principles of progamming A</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/casual.css">
+</head>
+
+<body>
+    <div id="fontBtns">
+        <label for="plusBtn">Font Size: </label>
+        <input type="button" id="plusBtn" class="fontBtn" value="+">
+        <input type="button" id="minusBtn" class="fontBtn" value="-">
+    </div>
+    <div style="position: absolute; top: 0; left: 0; padding: 10px;" onclick="toggler()">
+        <a href="#"><img id="modeicon" style="width: 60%;" src="./Icons/dark.png"></a>
+    </div>
+
+    <script>
+        let state = 'day'
+
+        function toggler() {
+            if (state === 'day') {
+                state = 'night'
+                document.getElementById("modeicon").src = "./Icons/day.png"
+                document.body.style.setProperty("background-color", "rgb(60, 64, 67)", "important")
+                document.body.style.setProperty("color", "rgba(255, 255, 255, 0.7)", "important")
+                document.getElementById("modeicon").style.filter = "invert(1)"
+                document.body.style.transition = "0.5s"
+
+            } else {
+                state = 'day'
+                document.getElementById("modeicon").src = "./Icons/dark.png"
+                document.body.style.setProperty("background-color", "white", "important")
+                document.body.style.setProperty("color", "black", "important")
+                document.getElementById("modeicon").style.filter = "invert(0)"
+                document.body.style.transition = "0.5s"
+
+            }
+        }
+    </script>
+    <h1>TUT PPA115D Principles of progamming A</h1>
+    <main>
+        <div id="questiondiv">
+            <div id="question">Please select a module you want to study</div>
+            <div id="answers"></div>
+            <div id="buttons">
+                <input type="button" class="btns" disabled="true" id="previousBtn" value="(<) Previous">
+                <input type="button" class="btns" disabled="true" id="checkBtn" value="Check (⎵)">
+                <input type="button" class="btns" disabled="true" id="nextBtn" value="Next (>)">
+            </div>
+        </div>
+        <div id="menudiv">
+            <details id="det">
+                <summary>Modules</summary>
+                <div id="checkboxes">
+                    <div>
+                        <h3>Module 1</h3>
+                    </div>
+
+                    <div class="subbox">
+                        <input type="checkbox" id="m1c1t3" class="checks">
+                        <label>Principles of programming</label>
+                    </div>
+                </div>
+            </details>
+        </div>
+        <div id="numq"></div>
+    </main>
+    <script src="./scripts/questions.js"></script>
+    <script src="./scripts/code.js">
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Loren Kociko">
+    <meta name="description" content="TUT PPA115D Principles of progamming A">
+    <meta name="keywords" content="JAVA, PPA115D, EXAM, MOCK, questions, practice, answers, 200-301">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TUT PPA115D Principles of progamming A</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+    <main>
+        <div id="title">
+            <h1>PPA115D(Principles of progamming A)</h1>
+        </div>
+        <div id="container">
+            <div id="card-index">
+                <ul>
+                    <a href="./casual.html">
+                        <li>
+                            Casual Study
+                        </li>
+                    </a>
+                    <a href="#" onclick="changeState('simu')">
+                        <li>
+                            EXAM Simulation
+                        </li>
+                    </a>
+                    <a href="#" onclick="changeState('about')">
+                        <li>
+                            <p>About US</p>
+                        </li>
+                    </a>
+                </ul>
+            </div>
+            <div id="card-simulation">
+                <div id="card-select">
+                    <div class="titles">Time:</div>
+                    <div id="time-cont" class="btn-cont">
+                        <input type="button" value="30'" class="time-in" id="time-30">
+                        <input type="button" value="60'" class="time-in" id="time-60">
+                        <input type="button" value="90'" class="time-in" id="time-90">
+                        <input type="button" value="150'" class="time-in selected" id="time-150">
+                        <input type="button" value="Unlimited" class="time-in" id="time-unlimited">
+                    </div>
+                    <div class="titles">Questions:</div>
+                    <div id="question-cont" class="btn-cont">
+                        <input type="button" value="11" class="question-in" id="question-30">
+                        <input type="button" value="60" class="question-in" id="question-60">
+                        <input type="button" value="100" class="question-in selected" id="question-100">
+                        <input type="button" value="200" class="question-in" id="question-200">
+                        <input type="button" value="All" class="question-in" id="question-all">
+                    </div>
+                </div>
+                <hr>
+                <div id="checkboxes">
+                    <div>
+                        <h3>Module 1</h3>
+                    </div>
+
+                    <div class="subbox">
+                        <input type="checkbox" id="m1c1t3" class="checks" checked>
+                        <label>Principles of programming</label>
+                    </div>
+                </div>
+
+                <a id="start-game" href="#" onclick="startExam()">Start Exam</a>
+            </div>
+            <div id="card-about">
+                <h3>TUT PPA115D Principles of progamming </h3>
+                <hr>
+                <p>To help us with  Java module PPA115D(Principles of programming A) , 
+				we created this web application. It was developed using native HTML/CSS/JS. 
+				It includes most of the questions from the PPA115D module exams. Our goal was to create a clean and fast interface, 
+				with the option to combine different modules, randomized questions, and instant feedback.</p>
+                <hr>
+
+            </div>
+        </div>
+    </main>
+    <a id="back-div" href="#" onclick="changeState('main')"><img id="back-btn" src="./Icons/back.png"></a>
+    <div id="contacts">
+        <h4 style="padding-bottom: 10px;">CFAF05D: 2023 </h4>
+
+    </div>
+    <script>
+        changeState('main')
+
+        function startExam() {
+            let timeQuestions = document.querySelectorAll(".selected")
+            let storedData = {}
+            storedData.time = timeQuestions[0].value
+            storedData.questions = timeQuestions[1].value
+            let checkboxesCollection = document.querySelectorAll(".checks")
+            let selectedExams = []
+            for (let i = 0; i < checkboxesCollection.length; i++) {
+                if (checkboxesCollection[i].checked) {
+                    selectedExams.push(checkboxesCollection[i].id)
+                }
+            }
+            storedData.selectedExams = selectedExams
+            localStorage.setItem('exam', JSON.stringify(storedData));
+            window.location.href = "./exam.html";
+        }
+
+
+        function changeState(state) {
+            if (state === "main") {
+                document.getElementById("card-index").style.display = "block"
+                document.getElementById("card-simulation").style.display = "none"
+                document.getElementById("card-about").style.display = "none"
+                document.getElementById("back-btn").style.display = "none"
+            } else if (state === "simu") {
+                document.getElementById("card-index").style.display = "none"
+                document.getElementById("card-simulation").style.display = "grid"
+                document.getElementById("card-about").style.display = "none"
+                document.getElementById("back-btn").style.display = "block"
+            } else if (state === "about") {
+                document.getElementById("card-index").style.display = "none"
+                document.getElementById("card-simulation").style.display = "none"
+                document.getElementById("card-about").style.display = "block"
+                document.getElementById("back-btn").style.display = "block"
+            }
+        }
+
+        const allTimeInputs = document.querySelectorAll(".time-in")
+        const allQuestionInputs = document.querySelectorAll(".question-in")
+        for (let i = 0; i < allTimeInputs.length; i++) {
+            allTimeInputs[i].addEventListener("click", () => {
+                resetSelected(allTimeInputs)
+                allTimeInputs[i].classList.add("selected")
+            });
+        }
+        for (let i = 0; i < allQuestionInputs.length; i++) {
+            allQuestionInputs[i].addEventListener("click", () => {
+                resetSelected(allQuestionInputs)
+                allQuestionInputs[i].classList.add("selected")
+            });
+        }
+
+        function resetSelected(list) {
+            for (let i = 0; i < list.length; i++) {
+                list[i].classList.remove("selected")
+            }
+        }
+    </script>
+	<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyDc1KRWK57x2UWoUfME8yWCCcEFtEfG8r0",
+    authDomain: "senamileppa115d.firebaseapp.com",
+    projectId: "senamileppa115d",
+    storageBucket: "senamileppa115d.appspot.com",
+    messagingSenderId: "180011976868",
+    appId: "1:180011976868:web:bf9f8bb1e3ab8625cf7e31",
+    measurementId: "G-Z5R7Q7R6QT"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
+</body>
+
+</html>
