@@ -229,11 +229,11 @@ function showResults() {
     if (score >= 8) {
         result.innerText = 'Pass'
         result.style.color = "rgb(0,137,109)"
-        resultText.innerText = `Congratulations!! You passed this PPA115D Exam simulation(72% and above is required). Hope you also pass the real exam, best of luck!!`
+        resultText.innerText = `Congratulations!! You passed this PPA115D Exam simulation(8 out of 11 points(8/11) and above has been reached). Hope you also pass the real exam, best of luck!!`
     } else {
         result.innerText = 'Fail'
         result.style.color = "rgb(201,86,58)"
-        resultText.innerText = `Unfortunately you were unable to pass this PPA115DExam simulation((72% and above required)), but dont give up!! Best of luck on your real exam!!`
+        resultText.innerText = `Unfortunately you were unable to pass this PPA115DExam simulation(8 out of 11 points(8/11) and above has not been reached)., but dont give up!! Best of luck on your real exam!!`
 
     }
 }
